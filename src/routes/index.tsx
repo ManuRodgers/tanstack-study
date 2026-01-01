@@ -1,9 +1,15 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import type { ErrorComponentProps } from "@tanstack/react-router";
+import { createFileRoute, ErrorComponent } from "@tanstack/react-router";
 import { todosQueryOptions } from "@/utils/queries/todos";
+
+function IndexError({ error }: ErrorComponentProps) {
+	return <ErrorComponent error={error} />;
+}
 
 export const Route = createFileRoute("/")({
 	component: App,
+	errorComponent: IndexError,
 	loader: async ({ context: { queryClient } }) => {
 		await queryClient.ensureQueryData(todosQueryOptions);
 	},
