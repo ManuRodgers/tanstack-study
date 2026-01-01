@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoElysiaExampleRouteImport } from './routes/demo/elysia-example'
 import { Route as ApiSplatRouteImport } from './routes/api.$'
 
 const AboutRoute = AboutRouteImport.update({
@@ -24,11 +23,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoElysiaExampleRoute = DemoElysiaExampleRouteImport.update({
-  id: '/demo/elysia-example',
-  path: '/demo/elysia-example',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiSplatRoute = ApiSplatRouteImport.update({
   id: '/api/$',
   path: '/api/$',
@@ -39,34 +33,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/api/$': typeof ApiSplatRoute
-  '/demo/elysia-example': typeof DemoElysiaExampleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/api/$': typeof ApiSplatRoute
-  '/demo/elysia-example': typeof DemoElysiaExampleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/api/$': typeof ApiSplatRoute
-  '/demo/elysia-example': typeof DemoElysiaExampleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/api/$' | '/demo/elysia-example'
+  fullPaths: '/' | '/about' | '/api/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/api/$' | '/demo/elysia-example'
-  id: '__root__' | '/' | '/about' | '/api/$' | '/demo/elysia-example'
+  to: '/' | '/about' | '/api/$'
+  id: '__root__' | '/' | '/about' | '/api/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApiSplatRoute: typeof ApiSplatRoute
-  DemoElysiaExampleRoute: typeof DemoElysiaExampleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,13 +75,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/elysia-example': {
-      id: '/demo/elysia-example'
-      path: '/demo/elysia-example'
-      fullPath: '/demo/elysia-example'
-      preLoaderRoute: typeof DemoElysiaExampleRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/$': {
       id: '/api/$'
       path: '/api/$'
@@ -106,7 +89,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApiSplatRoute: ApiSplatRoute,
-  DemoElysiaExampleRoute: DemoElysiaExampleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
