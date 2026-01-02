@@ -1,5 +1,3 @@
-import { Todo } from "./todo.schema";
-
 export class TodoService {
 	static getTodos() {
 		return [

@@ -19,4 +19,11 @@ export const Route = createFileRoute("/api/$")({
 
 export const getTreaty = createIsomorphicFn()
 	.server(() => treaty(app).api)
-	.client(() => treaty<App>("http://localhost:3001").api);
+	.client(() => {
+		// 在生产环境中使用相对 URL，在开发环境中使用 localhost
+		const baseUrl =
+			typeof window !== "undefined"
+				? window.location.origin
+				: "http://localhost:3001";
+		return treaty<App>(baseUrl).api;
+	});
