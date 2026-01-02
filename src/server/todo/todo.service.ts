@@ -1,9 +1,8 @@
+import { db } from "../db";
+import { todosTable } from "../db/schema";
+
 export class TodoService {
-	static getTodos() {
-		return [
-			{ id: 1, name: "Buy milk" },
-			{ id: 2, name: "Buy bread" },
-			{ id: 3, name: "Buy eggs" },
-		];
+	static async getTodos() {
+		return await db.select().from(todosTable);
 	}
 }
