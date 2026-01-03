@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1767378051874,
-      "tag": "0000_good_captain_universe",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1767378413631,
-      "tag": "0001_greedy_white_tiger",
+      "when": 1767405842744,
+      "tag": "0000_thin_violations",
       "breakpoints": true
     }
   ]
